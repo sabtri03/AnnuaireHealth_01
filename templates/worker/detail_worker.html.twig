@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ worker.name }}{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1>{{worker.name}}</h1>
+        <!-- Show Pictures LOGO --->
+        <div>
+            {% for logo in  worker.logo%}
+                <img src="{{ logo.picture }}"/>
+            {% endfor %}
+        </div>
+        <br/>
+        <p>Email : {{ worker.emailPublic }}</p>
+        <p>Phone Number : {{ worker.phoneNumber }}</p>
+        <p>TVA Number : {{ worker.tvaNb }}</p>
+        <p>Website : <a href="{{ worker.webSite }}">{{worker.name}} website</a></p>
+
+        <!---Affichage des Services lie a ce Prestataire--->
+        <div>
+            <h3>Services:</h3>
+            <ul>
+                {% for service in  worker.services%}
+                  <li>
+                      <a href="{{ path('services_detail',{'id': service.id})}}">{{ service.nom }}</a>
+                  </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <br/>
+        <!-- Show Pictures LOGO --->
+        <div>
+            {% for photo in  worker.photo%}
+                <img src="{{ photo.picture }}"/>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

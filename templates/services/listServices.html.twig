@@ -1,0 +1,3 @@
+{% for service in Services %}
+    <li><a href="{{ path('services_detail', {'id': service.id}) }}" >{{ service.nom }}</a></li>
+{% endfor %}
