@@ -13,6 +13,7 @@
 
                     <div class="header-content">
                         <div class="header-top">
+                           <!--
                             <div class="header-search">
                                 <form  class="form-inline" >
                                     <input type="search" name="search" class="form-control form-control-sm ml-3 w-75" placeholder="Search for...">
@@ -22,6 +23,7 @@
                                     </button>
                                 </form>
                             </div><!-- /.header-search -->
+                            {{ render(controller('App\\Controller\\SearchController::indexAction',{} )) }};
 
                             <ul class="header-nav-social social-links nav nav-pills">
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>

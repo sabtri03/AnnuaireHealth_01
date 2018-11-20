@@ -47,4 +47,22 @@ class ServicesRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param $search
+     * @return Services[]
+     */
+    public function findByNom($search): array
+    {
+        $qb = $this->createQueryBuilder('s');
+            //$qb->addCriteria($qb);
+            $qb->andWhere(
+                $qb->expr()->like( 's.nom', ':nom' )
+            );
+            $qb->setParameter( 'nom',"%".$search."%" );
+
+        $query = $qb->getQuery();
+        //$results = $query->getResult();
+        return $query->execute();
+    }
 }
