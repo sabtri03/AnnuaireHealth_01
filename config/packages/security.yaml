@@ -1,7 +1,40 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
+            # //this becomes the internal name of the provider
+            # //not usually important, but can be used to specify which
+            # //provider you want for which firewall (advanced case) or
+            # //for a specific authentication provider
         in_memory: { memory: ~ }
+        #some_provider_key:
+                # //provider type - one of the above
+            #memory:
+                    # //custom options for that provider
+                #users:
+                    #user:  { password: '%env(USER_PASSWORD)%', roles: [ 'ROLE_USER' ] }
+                    #admin: { password: '%env(ADMIN_PASSWORD)%', roles: [ 'ROLE_ADMIN' ] }
+
+        #a_chain_provider:
+            #chain:
+                #providers: [some_provider_key, another_provider_key]
+
+        user_db_provider:
+            entity:
+                class: App\Entity\User
+                # the property to query by - e.g. username, email, etc
+                property: email
+                # if you're using multiple entity managers
+                # manager_name: customer
+
+    encoders:
+        # //use your user class name here
+        App\Entity\User:
+            # //bcrypt or argon2i are recommended
+            # //argon2i is more secure, but requires PHP 7.2 or the Sodium extension
+            algorithm: bcrypt
+            cost: 12
+            # //complexity de
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

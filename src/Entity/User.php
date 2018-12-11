@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -10,7 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"serviceUser" = "ServiceUser", "worker" = "Worker"})
  */
-abstract class User
+
+abstract class User implements UserInterface
 {
 
     /**
@@ -69,7 +71,7 @@ abstract class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     */
+     */ //, unique=true
     private $email;
 
     public function getId(): ?int
@@ -199,4 +201,28 @@ abstract class User
 
         return $this;
     }
+
+    public function getRoles ()
+    {
+        return ['ROLE_USER'];
+    }
+
+    public function getUsername ()
+    {
+        return $this->email;
+    }
+
+    public function getSalt ()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials ()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+
+
+
 }

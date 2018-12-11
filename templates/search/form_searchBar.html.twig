@@ -1,5 +1,5 @@
 <div class="header-search">
-    {{ form_start(form, { 'attr': {'class': 'navbar-form navbar-leftform-inline'} }) }}
+    {{ form_start(form, { 'attr': {'class': 'navbar-form navbar-leftform-inline'} , 'action': path('search_result')}) }}
     <div class="form-group">
         {{ form_widget(form.search, { 'attr': {'class': 'form-control form-control-sm ml-3 w-75'} }) }}
         {{ form_widget(form.save, { 'attr': {'class': 'btn btn-outline-secondary fa fa-search'} }) }}

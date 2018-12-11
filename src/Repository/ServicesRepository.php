@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Services;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use phpDocumentor\Reflection\Types\Array_;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -55,14 +56,34 @@ class ServicesRepository extends ServiceEntityRepository
     public function findByNom($search): array
     {
         $qb = $this->createQueryBuilder('s');
-            //$qb->addCriteria($qb);
+           // $qb->addCriteria($qb);
             $qb->andWhere(
                 $qb->expr()->like( 's.nom', ':nom' )
             );
-            $qb->setParameter( 'nom',"%".$search."%" );
+            $qb->setParameter('nom',"%".$search."%" );
 
         $query = $qb->getQuery();
         //$results = $query->getResult();
         return $query->execute();
     }
+
+
+
+
+
+
+    /*  public function findByNom($search)
+      {
+          $qb = $this->createQueryBuilder('s');
+          //$qb->addCriteria($qb);
+          $qb->andWhere(
+          $qb->expr()->like( 's.nom', ':nom' )
+          );
+          $qb->setParameter( 'nom',"%".$search."%" );
+
+          $query = $qb->getQuery();
+          //$results = $query->getResult();
+          return $query->execute();
+      }
+*/
 }

@@ -12,6 +12,7 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->setMethod('GET')
             ->add('search')
             ->add('save', SubmitType::class)
         ;
@@ -23,4 +24,7 @@ class SearchType extends AbstractType
             // Configure your form options here
         ]);
     }
+
+
+
 }
