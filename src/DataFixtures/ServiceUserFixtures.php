@@ -5,9 +5,17 @@ namespace App\DataFixtures;
 use App\Entity\ServiceUser;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ServiceUserFixtures extends Fixture
 {
+    //password encoding
+    private $passwordEncoder ;
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
+
     public function load(ObjectManager $manager)
     {
         //creation by doctrine fixtur of 10 new servicesUser
@@ -23,7 +31,13 @@ class ServiceUserFixtures extends Fixture
             $serviceUser->setInscribe(1);
             $serviceUser->setInscribeDate(new \Datetime());
             $serviceUser->setAdresseNumber(rand(0,400));
-            $serviceUser->setPassword('Password'.$i);
+            $serviceUser->setRoles(array('ROLE_USER'));
+            //$serviceUser->setPassword('Password'.$i);
+            //password encoded with the previous encoding
+            $serviceUser->setPassword($this->passwordEncoder->encodePassword(
+                $serviceUser,
+                $i.'Password'.rand(0,4000)
+            ));
             $serviceUser->setNbTry(0);
 
             // other fixtures can get this object using the CPLocaliteFixtures::CP_REFERENCE  constant et CPLocaliteFixtures::LOCALITE_REFERENCE  constant

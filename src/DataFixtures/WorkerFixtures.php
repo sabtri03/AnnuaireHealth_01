@@ -6,9 +6,16 @@ use App\Entity\Pictures;
 use App\Entity\Worker;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class WorkerFixtures extends Fixture
 {
+        //password encoding
+        private $passwordEncoder ;
+        public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+        {
+            $this->passwordEncoder = $passwordEncoder;
+        }
 
     public function load(ObjectManager $manager)
     {
@@ -28,7 +35,13 @@ class WorkerFixtures extends Fixture
             $worker->setInscribe(1);
             $worker->setInscribeDate(new \Datetime());
             $worker->setAdresseNumber(rand(0,400));
-            $worker->setPassword('Password'.$i);
+            $worker->setRoles(array('ROLE_USER'));
+            //$worker->setPassword($i.'Password'.rand(0,4000));
+            //password encoded with the previous encoding
+            $worker->setPassword($this->passwordEncoder->encodePassword(
+                $worker,
+                $i.'Password'
+             ));
             $worker->setNbTry(0);
 
                 //get back the object codePostal to inject it to worker

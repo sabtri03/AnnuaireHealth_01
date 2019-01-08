@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"serviceUser" = "ServiceUser", "worker" = "Worker"})
+ * @ORM\Table(name="users")
  */
 
 abstract class User implements UserInterface
@@ -73,6 +74,12 @@ abstract class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */ //, unique=true
     private $email;
+
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $roles = [];
+
 
     public function getId(): ?int
     {
@@ -202,9 +209,18 @@ abstract class User implements UserInterface
         return $this;
     }
 
-    public function getRoles ()
+    public function getRoles(): array
     {
-        return ['ROLE_USER'];
+        $roles = $this->roles;
+            // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+        //return array('ROLE_USER');
+    }
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
     }
 
     public function getUsername ()
@@ -214,12 +230,13 @@ abstract class User implements UserInterface
 
     public function getSalt ()
     {
-        // TODO: Implement getSalt() method.
+        //return $this->salt;
+        return null;
     }
+
 
     public function eraseCredentials ()
     {
-        // TODO: Implement eraseCredentials() method.
     }
 
 
