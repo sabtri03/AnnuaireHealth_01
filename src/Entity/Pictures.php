@@ -41,7 +41,7 @@ class Pictures
         return $this->id;
     }
 
-    public function getPicture(): ?string
+    public function getPicture()
     {
         return $this->Picture;
     }

@@ -25,7 +25,7 @@ class ServiceUserFixtures extends Fixture
             $serviceUser->setSurname('Prenom '.$i);
             $serviceUser->setNewsletter(0);
 
-            $serviceUser->setEmail($i.'@hotmail.com');
+            $serviceUser->setEmail($i.'service@hotmail.com');
             $serviceUser->setAdresseStreet('Rue numero '.rand(0,20));
             $serviceUser->setBanned(0);
             $serviceUser->setInscribe(1);
@@ -36,7 +36,7 @@ class ServiceUserFixtures extends Fixture
             //password encoded with the previous encoding
             $serviceUser->setPassword($this->passwordEncoder->encodePassword(
                 $serviceUser,
-                $i.'Password'.rand(0,4000)
+                $i.'Password'
             ));
             $serviceUser->setNbTry(0);
 
