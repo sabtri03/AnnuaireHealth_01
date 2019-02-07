@@ -19,7 +19,12 @@ class Pictures
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Picture;
+    private $picture;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $alt;
 
     /**
      * @ORM\Column(type="integer")
@@ -28,11 +33,13 @@ class Pictures
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Worker", inversedBy="logo")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $worker;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Worker", inversedBy="photo")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $workerPictures;
 
@@ -43,12 +50,25 @@ class Pictures
 
     public function getPicture()
     {
-        return $this->Picture;
+        return $this->picture;
     }
 
-    public function setPicture(string $Picture): self
+    public function setPicture($picture): self
     {
-        $this->Picture = $Picture;
+        if($picture){
+            $this->picture = $picture;
+        }
+        return $this;
+    }
+
+    public function getAlt(): ?string
+    {
+        return $this->alt;
+    }
+
+    public function setAlt(string $alt): self
+    {
+        $this->alt = $alt;
 
         return $this;
     }

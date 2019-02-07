@@ -2,7 +2,9 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -11,8 +13,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"serviceUser" = "ServiceUser", "worker" = "Worker"})
  * @ORM\Table(name="users")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-
 abstract class User implements UserInterface
 {
 
@@ -79,6 +81,7 @@ abstract class User implements UserInterface
      * @ORM\Column(type="json")
      */
     private $roles = [];
+
 
 
     public function getId(): ?int

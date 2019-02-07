@@ -18,16 +18,17 @@
         "symfony/process": "*",
         "symfony/security-bundle": "*",
         "symfony/serializer-pack": "*",
-        "symfony/swiftmailer-bundle": "^3.1",
+        "symfony/swiftmailer-bundle": "^3.2",
         "symfony/twig-bundle": "*",
         "symfony/validator": "*",
         "symfony/web-link": "*",
+        "symfony/webpack-encore-bundle": "^1.1",
         "symfony/yaml": "*"
     },
     "require-dev": {
         "symfony/debug-pack": "*",
         "symfony/dotenv": "*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.11",
         "symfony/profiler-pack": "^1.0",
         "symfony/test-pack": "*",
         "symfony/web-server-bundle": "*"
@@ -74,7 +75,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.1.*"
+            "require": "4.2.*"
         }
     }
 }

@@ -284,8 +284,8 @@ th {
 
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.eot");
-  src: url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../../assets/libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
+  src: url("../libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.eot");
+  src: url("../libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../libraries/bootstrap-sass/fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
 
 .glyphicon {
   position: relative;
@@ -6385,7 +6385,7 @@ button.close {
     color: #fff; }
 
 .background-transparent-image {
-  background-image: url("../img/tmp/bg-transparent.jpg");
+  background-image: url("../../public/img/tmp/bg-transparent.jpg");
   background-size: cover;
   background-position: center center; }
 
@@ -6760,7 +6760,7 @@ blockquote {
 
 .document-title {
   background-repeat: no-repeat;
-  background-image: url("../img/tmp/slider-large-3.jpg");
+  background-image: url("../../public/img/tmp/slider-large-3.jpg");
   background-position: center center;
   margin: -80px -750px 80px -750px;
   padding: 70px 750px;
@@ -10724,7 +10724,7 @@ ol li {
     text-transform: uppercase; }
 
 .special {
-  background-image: url("../img/tmp/product-4.jpg");
+  background-image: url("../../public/img/tmp/product-4.jpg");
   background-size: cover;
   background-position: center center;
   bottom: 0px;
