@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Worker;
 use App\Form\RegistrationFormType;
+use App\Services\Mailer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,42 +30,11 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/profil/{name}", name="profil_creation_email")
-     */
-    public function profilCreation($name, \Swift_Mailer $mailer)
-    {
-
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('sabtri03@gmail.com')
-            ->setTo('recipient@example.com')
-            ->setBody(
-                $this->renderView(
-                // templates/emails/registration.html.twig
-                    'emails/registration.html.twig',
-                    ['name' => $name]
-                ),
-                'text/html'
-            )
-            /*
-             * If you also want to include a plaintext version of the message
-            ->addPart(
-                $this->renderView(
-                    'emails/registration.txt.twig',
-                    ['name' => $name]
-                ),
-                'text/plain'
-            )
-            */
-        ;
-        $mailer->send($message);
-        return $this->render(...);
-    }
 
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, Mailer $mailer): Response
     {
         $worker = new Worker();
         $form = $this->createForm(RegistrationFormType::class, $worker);
@@ -89,6 +59,7 @@ class SecurityController extends AbstractController
             $entityManager->flush();
 
             // Send an email here via function profile_creation_email
+            $mailer->sendMail('edit_profile', $worker->getEmail());
 
             return $this->redirectToRoute('app_login');
         }
