@@ -61,6 +61,8 @@ class RegistrationServiceUserType extends AbstractType
                     'entry_type' => ImageType::class,
                     'entry_options' => ['label' => false],
                     'allow_add' => true,
+                    'by_reference'=>false,
+                    'data_class' => null,
                 ])
             ->add('save', SubmitType::class, array('label' => 'Save'))
         ;

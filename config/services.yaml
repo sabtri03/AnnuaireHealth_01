@@ -33,10 +33,13 @@ services:
     App\Services\FileUploader:
       arguments:
         $targetDirectory: '%image_directory%'
+
     App\EventListener\ImageUploadListener:
       tags:
         - { name: doctrine.event_listener, event: prePersist }
         - { name: doctrine.event_listener, event: preUpdate }
+        - { name: doctrine.event_listener, event: postLoad }
+
     App\Form\ImageType:
       arguments:
         $imagePath: '%image_directory%'

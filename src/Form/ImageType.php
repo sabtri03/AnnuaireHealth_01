@@ -30,7 +30,7 @@ class ImageType extends FileType
             function(Pictures $picture=null){
                 if($picture instanceof Pictures){
                     try{
-                        $f = new Picture($this->imagePath."/".$picture->getPicture());
+                        $f = new File($this->imagePath."/".$picture->getPicture());
                         return $f;
                     }catch(FileNotFoundException $e){
                         dump($e->getMessage());

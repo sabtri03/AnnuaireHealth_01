@@ -64,30 +64,7 @@ class ImageUploadListener {
                     $this->uploader->removeFile($previousImage);
                 }
             }
-
         }
-        /*
-        if($entity instanceof ServiceUser) {
-            // on récupère les changements
-            $changes = $args->getEntityChangeSet();
-            // si il y a un changement à la propriété `logo`
-            if (array_key_exists('logo', $changes)) {
-                // on récupère l'entité existant avant le changement
-                $previousImage = $changes['logo'][0];
-            }
-            // si la nouvelle version du User n'a plus de Logo
-            if (is_null($entity->getLogo())) {
-                // on lui réinjecte l'image précédente
-                $entity->addLogo($previousImage);
-            } else {
-                // si une nouvelle Image est uploadée
-                // et qu'il en existe déjà une dans l'entité
-                if (!is_null($previousImage)) {
-                    $this->uploader->removeFile($previousImage);
-                }
-            }
-        }
-        */
         $this->uploadFile($entity);
     }
 
@@ -104,17 +81,26 @@ class ImageUploadListener {
             $entity->setPicture($filename);
             $entity->setRank(1);  //Can't be null
 
-             if($entity instanceof Worker) {
-                 $worker_id = $entity->getId();
-                $entity->setWorker($worker_id);
-            }/*
-            if($entity instanceof ServiceUser) {
-                $entity->addLogo($picture);
-            }*/
+        } elseif ($picture instanceof File) {
 
+            $entity->setPicture($picture->getFilename());
         }
     }
+
     public function log( $level, $message, array $context = array() ) {
         $this->logger->log($level, $message, $context);
+    }
+
+    public function postLoad(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+
+        if (!$entity instanceof Pictures) {
+            return;
+        }
+
+        if ($fileName = $entity->getPicture()) {
+            $entity->setPicture(new File($this->uploader->getTargetDirectory().'/'.$fileName));
+        }
     }
 }
