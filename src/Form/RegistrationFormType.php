@@ -74,7 +74,7 @@ class RegistrationFormType extends AbstractType
 
                 ])
 
-            ->add('save', SubmitType::class, array('label' => 'Create Task'))
+            ->add('save', SubmitType::class, array('label' => 'Save'))
         ;
     }
 

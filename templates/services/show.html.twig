@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Services{% endblock %}
+
+{% block body %}
+
+<div class="col-sm-8 col-lg-9">
+    <div class="content">
+
+        <div class="page-title">
+            <h1>Services</h1>
+        </div>
+        <div class="background-white p20 mb30">
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ service.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ service.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>EnAvant</th>
+                        <td>{{ service.enAvant ? 'Yes' : 'No' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ service.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Valide</th>
+                        <td>{{ service.valide ? 'Yes' : 'No' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!---Affichage des Prestataire lie a ce services --->
+            <div>
+                <h3>Prestataires</h3>
+                <ul>
+                    {% for worker in  service.offer%}
+                        <li>
+                            <a href="{{ path('worker_detail',{'id': worker.id})}}">{{ worker.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <a href="{{ path('services_index') }}">back to list</a>
+
+            <a href="{{ path('services_edit', {'id': service.id}) }}">edit</a>
+
+    {{ include('services/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,39 +1,18 @@
 {% extends 'base.html.twig' %}
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('registrationJS') }}
-{% endblock %}
+
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <div class="background-white p20 mb50">
+        <div class="container">
+            <h1  class="page-title">Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.name) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.password) }}
-        {{ form_row(registrationForm.emailPublic) }}
-        {{ form_row(registrationForm.adresseNumber) }}
-        {{ form_row(registrationForm.adresseStreet) }}
-        {{ form_row(registrationForm.phoneNumber) }}
-        {{ form_row(registrationForm.tvaNb) }}
-        {{ form_row(registrationForm.webSite) }}
-        {{ form_row(registrationForm.postCode) }}
-        {{ form_row(registrationForm.city) }}
-        {{ form_row(registrationForm.services) }}
+            <h3>Register as </h3>
 
-        <ul class="logos" data-prototype="{{ form_widget(registrationForm.logo.vars.prototype)|e('html_attr') }}">
-                {# iterate over each existing tag and render its only field: name #}
-                {% for logo in registrationForm.logo %}
-                    <li>{{ form_row(logo) }}</li>
-                {% endfor %}
-        </ul>
-        {{ form_row(registrationForm.save) }}
-        <!-- <button class="btn">Register</button>  -->
-    {{ form_end(registrationForm) }}
+            <a href="{{ path('app_register_worker')}}" class="btn btn-primary btn-lg">Worker</a>
+            <a href="{{ path('app_register_serviceUser')}}" class="btn btn-primary btn-lg">Service User</a>
+        </div><!-- /.container -->
+    </div><!-- /.hero-image-content -->
 
-    {% block javascripts %}
-        {{ parent() }}
-        {{ encore_entry_script_tags('registrationJS') }}
-    {% endblock %}
+
 {% endblock %}

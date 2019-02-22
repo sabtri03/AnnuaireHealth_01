@@ -1,0 +1,21 @@
+{{ form_start(form) }}
+
+    <div class="form-group">
+        {{ form_row(form.nom, { 'label' : 'Nom', 'attr' : { 'class' : 'form-control' }}) }}
+    </div><!-- /.form-group -->
+    <div class="form-group">
+        {{ form_row(form.description, { 'label' : 'Description', 'attr' : { 'class' : 'form-control' }}) }}
+    </div><!-- /.form-group -->
+
+    <!--- Add check box  -->
+    <div class="form-group">
+        {{ form_widget(form.valide, {'label' : 'Is it valid', 'attr' : { 'class' : 'checkbox '}}) }}
+        {{ form_label(form.valide) }}
+    </div><!-- /.form-group -->
+    <div class="form-group">
+        {{ form_widget(form.enAvant, {'label' : 'Put in Front', 'attr' : { 'class' : 'checkbox '}}) }}
+        {{ form_label(form.enAvant) }}
+    </div><!-- /.form-group -->
+<button class="btn btn-primary fa fa-comment">{{ button_label|default('Save') }}</button>
+{{ form_widget(form._token) }}
+{{ form_end(form, {'render_rest': false}) }}

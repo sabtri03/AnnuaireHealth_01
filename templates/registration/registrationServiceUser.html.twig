@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('registrationJS') }}
+{% endblock %}
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="contact-form-wrapper background-white p20 mb50">
+                <h1 class="page-title">Register as a Service User</h1>
+                {{ form_start(registrationForm) }}
+                <div class="form-group">
+                    {{ form_row(registrationForm.name, { 'label' : 'Name', 'attr' : { 'class' : 'form-control' }}) }}
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    {{ form_row(registrationForm.surname, { 'label' : 'Name', 'attr' : { 'class' : 'form-control' }}) }}
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    {{ form_row(registrationForm.email, { 'label' : 'Email', 'attr' : { 'class' : 'form-control' }}) }}
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    {{ form_row(registrationForm.password,{ 'label' : 'Password', 'attr' : { 'class' : 'form-control' }}) }}
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    {{ form_row(registrationForm.adresseNumber, { 'label' : 'Adresse Number', 'attr' : { 'class' : 'form-control' }}) }}
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    {{ form_row(registrationForm.adresseStreet, { 'label' : 'Adresse Street', 'attr' : { 'class' : 'form-control' }}) }}
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    {{ form_row(registrationForm.postCode, { 'label' : 'Post Code', 'attr' : { 'class' : 'form-control' }}) }}
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    {{ form_row(registrationForm.city,{ 'label' : 'City', 'attr' : { 'class' : 'form-control' }}) }}
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    {{ form_widget(registrationForm.newsletter, {'label' : 'Ok Newsletter?', 'attr' : { 'class' : 'checkbox '}}) }}
+                    {{ form_label(registrationForm.newsletter) }}
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    {{ form_label(registrationForm.logo) }}
+                    <ul class="logos" data-prototype="{{ form_row(registrationForm.logo.vars.prototype)|e('html_attr') }}">
+                        {# iterate over each existing tag and render its only field: name #}
+                        {% for logo in registrationForm.logo %}
+                            <li>{{ form_row(logo) }}</li>
+                        {% endfor %}
+                    </ul>
+                </div><!-- /.form-group -->
+                <div class="form-group">
+                    {{ form_row(registrationForm.save,{ 'label' : 'Save', 'attr' : { 'class' : 'btn btn-primary fa fa-comment' }}) }}
+                </div><!-- /.form-group -->
+                {{ form_end(registrationForm) }}
+            </div><!-- /.contact-form-wrapper -->
+        </div>
+    </div>
+
+    {% block javascripts %}
+        {{ parent() }}
+        {{ encore_entry_script_tags('registrationJS') }}
+    {% endblock %}
+{% endblock %}

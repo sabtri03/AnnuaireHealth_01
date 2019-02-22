@@ -43,6 +43,12 @@ class Pictures
      */
     private $workerPictures;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ServiceUser", inversedBy="logo")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $serviceUser;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,7 +59,7 @@ class Pictures
         return $this->picture;
     }
 
-    public function setPicture($picture): self
+    public function setPicture($picture)//: self
     {
         if($picture){
             $this->picture = $picture;
@@ -105,6 +111,18 @@ class Pictures
     public function setWorkerPictures(?Worker $workerPictures): self
     {
         $this->workerPictures = $workerPictures;
+
+        return $this;
+    }
+
+    public function getServiceUser(): ?ServiceUser
+    {
+        return $this->serviceUser;
+    }
+
+    public function setServiceUser(?ServiceUser $serviceUser): self
+    {
+        $this->serviceUser = $serviceUser;
 
         return $this;
     }

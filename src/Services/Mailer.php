@@ -14,6 +14,7 @@ class Mailer
 
     private $mailer;
     /**
+     *
      *@var $mailer \swift_Mailer $mailer
      */
     Public function __construct(\Swift_Mailer $mailer)

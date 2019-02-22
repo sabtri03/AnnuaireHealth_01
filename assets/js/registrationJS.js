@@ -1,5 +1,5 @@
-// setup an "add a tag" link
-var $addLogoButton = $('<button type="button" class="add_logo_link">Add a tag</button>');
+// setup an "add a Logo" link
+var $addLogoButton = $('<button type="button" class="add_logo_link btn btn-primary fa fa-comment">Add a Logo</button>');
 var $newLinkLi = $('<li></li>').append($addLogoButton);
 
 jQuery(document).ready(function($) {
@@ -17,7 +17,6 @@ jQuery(document).ready(function($) {
     $addLogoButton.on('click', function(e) {
         // prevent the link from creating a "#" on the URL
         e.preventDefault();
-        console.log('click click');
         // add a new tag form (see code block below)
         addLogoForm($collectionHolder, $newLinkLi);
     });

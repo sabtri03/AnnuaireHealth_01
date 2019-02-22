@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Worker;
+use App\Form\RegistrationFormType;
 use App\Repository\WorkerRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class WorkerController extends AbstractController
@@ -34,4 +37,6 @@ class WorkerController extends AbstractController
             ['worker'=>$id,]
         );
     }
+
+
 }

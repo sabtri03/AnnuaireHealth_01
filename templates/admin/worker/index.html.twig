@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="background-white p20 mb50">
+        <div class="container">
+            <h1  class="page-title">Edit</h1>
+
+            <h3>Hello {{ worker.name }} </h3>
+
+            <a href="{{ path('worker_profile_edit')}}" class="btn btn-primary btn-lg">Edite Profile</a>
+            <a href="" class="btn btn-primary btn-lg">Logout</a>
+        </div><!-- /.container -->
+    </div><!-- /.hero-image-content -->
+
+
+{% endblock %}

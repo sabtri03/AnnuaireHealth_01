@@ -2,6 +2,7 @@
 namespace App\Form;
 
 use App\Entity\Pictures;
+use App\Entity\Worker;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -42,6 +43,7 @@ class ImageType extends FileType
                     $picture = new Pictures();
                     $picture->setPicture($uploadedFile);
                     return $picture;
+
                 }
             }
         ));

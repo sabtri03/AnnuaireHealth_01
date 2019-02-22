@@ -56,6 +56,7 @@ class WorkerFixtures extends Fixture
                 $PictureLogo->setPicture('https://via.placeholder.com/140x100?text=Logo');
                 $PictureLogo->setRank(1);
                     $worker->addLogo($PictureLogo);
+
                 //creation of the Object Picture for the Photos
                 $PicturePhoto = new Pictures();
                 $PicturePhoto->setPicture('https://via.placeholder.com/200x100?text=Photo');

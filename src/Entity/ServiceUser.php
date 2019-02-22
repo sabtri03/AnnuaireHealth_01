@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use App\Entity\Pictures;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Entity\User;
 /**
@@ -31,10 +34,15 @@ class ServiceUser extends User
      */
     private $surname;
 
-   /* /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Pictures", cascade={"persist", "remove"})
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Pictures",mappedBy="serviceUser", cascade={"persist", "remove"})
      */
-   // private $avatar;
+    private $logo;
+
+    public function __construct()
+    {
+        $this->logo = new ArrayCollection();
+    }
 /*
     public function getId(): ?int
     {
@@ -76,17 +84,35 @@ class ServiceUser extends User
 
         return $this;
     }
-/*
-    public function getAvatar(): ?Pictures
+
+    /**
+     * @return Collection|Pictures[]
+     */
+    public function getLogo(): Collection
     {
-        return $this->avatar;
+        return $this->logo;
     }
 
-    public function setAvatar(?Pictures $avatar): self
+    public function addLogo(Pictures $logo): self
     {
-        $this->avatar = $avatar;
+        if (!$this->logo->contains($logo)) {
+            $this->logo[] = $logo;
+            $logo->setServiceUser($this);
+        }
 
         return $this;
     }
-*/
+
+    public function removeLogo(Pictures $logo): self
+    {
+        if ($this->logo->contains($logo)) {
+            $this->logo->removeElement($logo);
+            // set the owning side to null (unless already changed)
+            if ($logo->getServiceUser() === $this) {
+                $logo->setServiceUser(null);
+            }
+        }
+        return $this;
+    }
+
 }

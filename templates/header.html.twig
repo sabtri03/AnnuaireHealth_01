@@ -6,7 +6,7 @@
                 <div class="header-inner">
                     <div class="header-logo">
                         <a href="{{ path('home')}}">
-                            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
+                            <img src="{{ asset('img/logo.png') }}" alt="Logo">
                             <span>Annuaire</span>
                         </a>
                     </div><!-- /.header-logo -->
@@ -34,6 +34,15 @@
                             <ul class="header-nav-secondary nav nav-pills">
                                 <li><a href="{{ path('app_login')}}">Login</a></li>
                                 <li><a href="{{ path('app_register')}}">Register</a></li>
+                                {% if is_granted(expression('"ROLE_WORKER" in roles')) %}
+                                    <li><a href="{{ path('edit_profile_worker')}}">Edit profile</a></li>
+                                {% endif %}
+                                {% if is_granted(expression('"ROLE_USER" in roles')) %}
+                                    <li><a href="{{ path('edit_profile_worker')}}">Edit profile</a></li>
+                                {% endif %}
+                                {% if is_granted(expression('"ROLE_ADMIN" in roles')) %}
+                                    <li><a href="{{ path('edit_profile_worker')}}">Edit Services</a></li>
+                                {% endif %}
                             </ul>
                         </div><!-- /.header-top -->
 

@@ -9,13 +9,14 @@
 require('../css/app.scss');
 require('../scss/superlist.css');
 require('../css/global.scss');
-
+//require('../css/superlist.scss');
 //require('../css/scss/superlist.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 var $ = require('jquery');
 require('bootstrap');
-
+//require('owl.carousel');
+//require('font-awesome');
 // import the function from greet.js (the .js extension is optional)
 // ./ (or ../) means to look for a local file
 var greet = require('./greet');
